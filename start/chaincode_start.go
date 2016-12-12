@@ -19,9 +19,8 @@ package main
 import (
 	"errors"
 	"fmt"
-
 	"github.com/hyperledger/fabric/core/chaincode/shim"
-	
+
 // SimpleChaincode example simple Chaincode implementation
 type SimpleChaincode struct {
 }
@@ -42,8 +41,7 @@ func main() {
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
-	fmt.Printf("*********************** in INIT using printf %s\n", args[0])
-	
+	fmt.Printf("*********************** in INIT using printf %s ", args[0])
 	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
@@ -109,7 +107,7 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 
 func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 
-    fmt.Printf("*********************** in READ using printf %s\n", args[0])
+    fmt.Printf("*********************** in READ using printf %s ", args[0])
 	
      var key, jsonResp string
     var err error
