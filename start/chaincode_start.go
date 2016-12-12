@@ -49,9 +49,9 @@ func logit (logtxt string) {
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
 	var logger = shim.NewLogger("mylog")
-
-	logger.log("******************* in INIT using SHIM ************");
 	
+	logger.Infof("in INIT using SHIM", args[0])
+
 	logit("******************* in INIT ************")
 	
 	if len(args) != 1 {
