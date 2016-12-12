@@ -19,6 +19,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"log"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
@@ -37,8 +38,16 @@ func main() {
 	}
 }
 
+func logit (logtxt string) {
+        var buf bytes.Buffer
+	logger := log.New(&buf, "logger: ", log.Lshortfile)
+	logger.Print(logtxt)
+}
+
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+	logit("******************* in INIT ************")
+	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
 	}
@@ -54,7 +63,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 // Invoke is our entry point to invoke a chaincode function
 func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
-	fmt.Println("invoke is running " + function)
+	log.Println("**************** invoke is running " + function)
 
 	// Handle different functions
 	if function == "init" {													//initialize the chaincode state, used as reset
