@@ -19,8 +19,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"log"
-	"bytes"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
 )
@@ -39,20 +37,13 @@ func main() {
 	}
 }
 
-func logit (logtxt string) {
-        var buf bytes.Buffer
-	logger := log.New(&buf, "logger: ", log.Lshortfile)
-	logger.Print(logtxt)
-}
 
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
 	var logger = shim.NewLogger("mylog")
 	
-	logger.Infof("in INIT using SHIM", args[0])
-
-	logit("******************* in INIT ************")
+	logger.Debugf("in INIT using SHIM: %s", args[0])
 	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
