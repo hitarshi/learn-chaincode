@@ -27,6 +27,8 @@ import (
 type SimpleChaincode struct {
 }
 
+var logger = shim.NewLogger("mylog")
+
 // ============================================================================================================================
 // Main
 // ============================================================================================================================
@@ -41,11 +43,9 @@ func main() {
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 
-	var logger = shim.NewLogger("mylog")
-	
+
 	logger.Debugf("*********************** in INIT using SHIM: %s", args[0])
 	logger.Infof("*********************** in INIT using SHIM: %s", args[0])
-	
 	
 	fmt.Printf("*********************** in INIT using printf %s\n", args[0])
 	
@@ -113,6 +113,11 @@ func (t *SimpleChaincode) Query(stub shim.ChaincodeStubInterface, function strin
 }
 
 func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+
+	logger.Debugf("*********************** in READ using SHIM: %s", args[0])
+	logger.Infof("*********************** in READ using SHIM: %s", args[0])
+	
+	
     fmt.Printf("*********************** in READ using printf %s\n", args[0])
 	
     var key, jsonResp string
