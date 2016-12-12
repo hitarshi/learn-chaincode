@@ -43,7 +43,9 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 
 	var logger = shim.NewLogger("mylog")
 	
-	logger.Debugf("in INIT using SHIM: %s", args[0])
+	logger.Debugf("*********************** in INIT using SHIM: %s", args[0])
+	logger.Infof("*********************** in INIT using SHIM: %s", args[0])
+	
 	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
