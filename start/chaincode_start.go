@@ -21,15 +21,13 @@ import (
 	"fmt"
 
 	"github.com/hyperledger/fabric/core/chaincode/shim"
-	"github.com/op/go-logging"
-)
+
 
 // SimpleChaincode example simple Chaincode implementation
 type SimpleChaincode struct {
 }
 
 var logger = shim.NewLogger("mylog")
-var putilsLogger = logging.MustGetLogger("protoutils")
 
 // ============================================================================================================================
 // Main
@@ -51,7 +49,6 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 	
 	fmt.Printf("*********************** in INIT using printf %s\n", args[0])
 	
-	putilsLogger.Infof("*********************** in INIT using UTILS")
 	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of arguments. Expecting 1")
@@ -123,8 +120,6 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 		
     fmt.Printf("*********************** in READ using printf %s\n", args[0])
 	
-    putilsLogger.Infof("*********************** in READ using UTILS")	
-    
      var key, jsonResp string
     var err error
 
