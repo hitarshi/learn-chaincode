@@ -47,6 +47,11 @@ func logit (logtxt string) {
 
 // Init resets all the things
 func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
+
+	var logger = shim.NewLogger("mylog")
+
+	logger.log("******************* in INIT using SHIM ************");
+	
 	logit("******************* in INIT ************")
 	
 	if len(args) != 1 {
